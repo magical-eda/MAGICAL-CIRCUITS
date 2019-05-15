@@ -1,8 +1,2 @@
-# MAGICAL
-Machine Generated Analog IC Layout
-
-# Preview
-Please see the preview branch for source codes
-
-# Circuit Release
-Please see benchmark\_circuits for released circuit benchmarks
+# MAGICAL-CIRCUITS
+Circuit release for the [MAGICAL](https://github.com/magical-eda/MAGICAL) project: machine generated analog IC layout. 
