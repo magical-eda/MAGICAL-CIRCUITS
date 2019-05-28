@@ -11,7 +11,7 @@ Project: Machine Generated Analog IC Layout.
 - ADC: 3 
 - Comparators: 4
 - OTA: 2
-- Vcm_Buffer: 10
+- Vcm_Buffer: 9
 - Vrefp_Buffer: 8
 
 More circuits to come.
