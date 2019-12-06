@@ -3,6 +3,8 @@ Circuit release for the [MAGICAL](https://github.com/magical-eda/MAGICAL)
 Project: Machine Generated Analog IC Layout. 
 
 # Updates
+- 12/06/2019
+    - Updated schematics for Comparator and OTA
 - 05/28/2019 
     - Updated 4 Vcm_Buffer
     - Updated 8 Vrefp_Buffer
