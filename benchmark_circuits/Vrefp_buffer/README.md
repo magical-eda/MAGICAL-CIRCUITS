@@ -4,9 +4,7 @@ This folder includes 8 reference buffers with 2 different architectures.
 
 Different variations (size variations to facilitate different applications) include 
 Reference_buffer_core_v2; 
-BUFFER_VREFP_ud;
-BUFFER_VREFP_ZHU;
-BUFFER_VREFP]
+BUFFER_VREFP_ZHU]
 
 
 Pin definition:
@@ -22,3 +20,26 @@ The standard test cases include:
 * Loop performance including gain bandwidth (GBW) and phase margin (PM). There are two loops in this block
   - The first loop includes the OTA and M99. The probe is at the gate of M99. 'stb' simulation can be performed to check PM (78 degree) and GBW (131MHz).
   - The second loop includes M9, M0. The probe is at the gate of M9. 'stb' simulation can be performed to check PM (74 degree) and GBW (469MHz). 
+  
+  
+  
+  
+  
+**BUFFER_VREFP_ud** [Architecture 2]
+Different variations (size variations to facilitate different applications) include BUFFER_VREFP_FINAL2;
+BUFFER_VREFP;BUFFER_VREFP1;BUFFER_VREFP2]
+
+
+Pin definition:
+- VDD/GND: power supplies (1.3V/0V)
+- VREF: a reference input voltage that is derived from a bandgap (1.1V)
+- IBIAS1: the bias current input with nominal 15uA
+- IBIAS2: the bias current input with nominal 10uA
+- VREFP: the reference buffer output (1.1V)
+
+The standard test cases include:
+* Current consumption: the power consumption of the nominal design is **150uA** from VDD.
+
+* Loop performance including gain bandwidth (GBW) and phase margin (PM). There are two loops in this block
+  - The first loop includes the OTA and M15. The probe is at the gate of M15. 'stb' simulation can be performed to check PM (74 degree) and GBW (434MHz).
+  - The second loop includes M28, M29. The probe is at the gate of M28. 'stb' simulation can be performed to check PM (60 degree) and GBW (828MHz). 
