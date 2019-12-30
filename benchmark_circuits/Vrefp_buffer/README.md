@@ -1,7 +1,12 @@
-This folder includes 8 reference buffers with 3 different architectures.
+This folder includes 8 reference buffers with 2 different architectures.
 
-**Reference_buffer_core** 
-[Architecture 1]
+**Reference_buffer_core** [Architecture 1]
+
+Different variations (size variations to facilitate different applications) include 
+Reference_buffer_core_v2; 
+BUFFER_VREFP_ud;
+BUFFER_VREFP_ZHU;
+BUFFER_VREFP]
 
 
 Pin definition:
