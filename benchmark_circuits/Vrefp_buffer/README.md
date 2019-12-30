@@ -26,6 +26,7 @@ The standard test cases include:
   
   
 **BUFFER_VREFP_ud** [Architecture 2]
+
 Different variations (size variations to facilitate different applications) include BUFFER_VREFP_FINAL2;
 BUFFER_VREFP;BUFFER_VREFP1;BUFFER_VREFP2]
 
