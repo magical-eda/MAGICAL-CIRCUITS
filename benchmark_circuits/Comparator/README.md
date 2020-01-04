@@ -2,7 +2,7 @@ This folder includes 4 comparators, whose test benches are similar. COMPARATOR_P
 
 **COMPARATOR_PRE_AMP** 
 
-It is a standard Strong-Arm latch design with optimization for high-speed data converters.
+It is a standard Strong-Arm latch design optimized for high-speed data converters.
 
 
 Pin definition:
