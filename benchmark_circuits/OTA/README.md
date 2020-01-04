@@ -1,4 +1,4 @@
-This folder includes 2 OTAs.
+This folder includes 3 OTAs, whose testbenches are similar. OTA_4 is used for illustration. 
 
 **OTA_4** 
 
@@ -10,7 +10,7 @@ Pin definition:
 - VIM/VIP: the OTA inputs with common-mode voltage as 0.6V
 - IBIAS: the bias current input with nominal 50uA
 - VCM: common-mode voltage used for common-mode feedback (CMFB) (0.6V)
-
+- VOP/VOM: OTA outputs
 
 The standard test cases include: [all data are presented with manual layout]
 * DC Gain: manual layout **69.5dB**. Measured through open-loop AC simulation.
