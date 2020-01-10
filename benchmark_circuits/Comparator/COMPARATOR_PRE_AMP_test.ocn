@@ -1,0 +1,26 @@
+simulator( 'spectre )
+design(	 "netlist")
+resultsDir( "" )
+modelFile( 
+    '("toplevel.scs" "top_tt")
+)
+analysis('tran ?stop "1u"  ?errpreset "conservative"  ?tranNoise "Transient Noise"  
+		?noisefmax "50G"  ?noisefmin ""  ?noiseseed "2"  ?noisescale ""  
+		?noisetmin ""  ?noiseupdate ""  ?noiseonoff ""  ?noiseinst ""  )
+desVar(	  "vd" 380u	)
+desVar(	  "offset" 0	)
+envOption(
+	'setTopLevelAsSubckt  t 
+	'firstRun  t 
+	'analysisOrder  list("tran") 
+)
+option( ?categ 'turboOpts
+	'uniMode  "APS" 
+)
+temp( 27 ) 
+run()
+selectResult( 'tran )
+plot(getData("/dout") )
+OUT = sample((VT("/OUTP") - VT("OUTM")) 2.3e-10 2.3e-10 "linear" 1e-11)
+One\'s\ Probability = (average(sample(v("/dout" ?result "tran") 2.3e-09 1e-06 "linear" 5e-09)) / 1.1)
+plot( One\'s\ Probability ?expr '( "One's Probability" ) )

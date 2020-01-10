@@ -1,0 +1,24 @@
+simulator( 'spectre )
+design(	 "netlist")
+resultsDir( "" )
+modelFile( 
+    '("toplevel.scs" "top_tt")
+)
+analysis('stb ?start "1"  ?stop "10G"  ?probe "/I4"  
+		?usingProbeMode t  )
+analysis('dc ?saveOppoint t  )
+analysis('ac ?start "1"  ?stop "10G"  )
+envOption(
+	'firstRun  nil 
+	'analysisOrder  list("dc" "ac" "tran" "stb") 
+)
+option( ?categ 'turboOpts
+	'uniMode  "Spectre" 
+)
+temp( 27 ) 
+run()
+AC = db((vfreq('ac "/OUT+") - vfreq('ac "/OUT-")))
+CMRR = value((AC - db((vfreq('ac "/OUTCM+") - vfreq('ac "/OUTCM-")))) 1000)
+plot( CMRR ?expr '( "CMRR" ) )
+AC_gain = value(db((vfreq('ac "/OUTP++") - vfreq('ac "/OUTM--"))) 1000)
+plot( AC_gain ?expr '( "AC_gain" ) )

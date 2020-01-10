@@ -1,0 +1,24 @@
+simulator( 'spectre )
+design(	 "netlist")
+resultsDir( "" )
+modelFile( 
+    '("toplevel.scs" "top_tt")
+)
+analysis('stb ?start "1"  ?stop "100G"  ?probe "/V9"  )
+analysis('dc ?saveOppoint t  )
+envOption(
+	'firstRun  nil 
+	'analysisOrder  list("dc" "ac" "stb") 
+)
+option(	'temp  "30.0" 
+)
+option( ?categ 'turboOpts
+	'uniMode  "Spectre" 
+)
+save( 'i "/I0/VDD" )
+temp( 30.0 ) 
+run()
+DC_current = IDC("/I0/VDD")
+plot( DC_current ?expr '( "DC_current" ) )
+Phase\ Margin = getData("phaseMargin" ?result "stb_margin")
+plot( Phase\ Margin ?expr '( "Phase Margin" ) )

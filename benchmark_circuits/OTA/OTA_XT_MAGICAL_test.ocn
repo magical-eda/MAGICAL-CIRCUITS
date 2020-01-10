@@ -1,0 +1,52 @@
+simulator( 'spectre )
+design(	 "netlist")
+resultsDir( "" )
+modelFile( 
+    '("toplevel.scs" "top_tt")
+)
+analysis('stb ?start "10K"  ?stop "10G"  ?dec "10"  
+		?probe "/prb/vinj"  )
+analysis('ac ?start "10K"  ?stop "10G"  )
+analysis('dc ?saveOppoint t  )
+desVar(	  "cm" 0	)
+desVar(	  "Fin" 10M	)
+desVar(	  "R1x" 50K	)
+desVar(	  "vdd" 1.2	)
+desVar(	  "Vin" 0.8	)
+desVar(	  "VBN" 0.55	)
+desVar(	  "vcmin" 0.55	)
+desVar(	  "Amp" 0.3	)
+desVar(	  "ib" 15u	)
+desVar(	  "ph" 0	)
+desVar(	  "dm" 1	)
+envOption(
+	'setTopLevelAsSubckt  t 
+	'analysisOrder  list("ac" "stb" "dc" "noise") 
+)
+option( ?categ 'turboOpts
+	'proc_affinity  "6" 
+	'numThreads  "32" 
+	'mtOption  "Manual" 
+	'apsplus  t 
+	'uniMode  "APS" 
+)
+saveOption( ?outputParamInfo nil )
+saveOption( ?elementInfo nil )
+saveOption( ?modelParamInfo nil )
+saveOption( ?infoOptions list(list("modelParameter" "models" "rawfile" "" "" "" nil) list("element" "inst" "rawfile" "" "" "" nil) list("outputParameter" "output" "rawfile" "" "" "" nil) list("designParamVals" "parameters" "rawfile" "" "" "" nil) list("primitives" "primitives" "rawfile" "" "" "" nil) list("subckts" "subckts" "rawfile" "" "" "" nil) list("asserts" "assert" "rawfile" "" "" "" nil) list("extremeinfo" "all" "logfile" "" "yes" "" nil) list("<Click_To_Add>" "none" "rawfile" "" "" "" nil) ) )
+saveOption( 'currents "all" )
+saveOption( 'save "all" )
+temp( 27 ) 
+run()
+DC_offset = ((VDC("/op") - VDC("/on")) / 2)
+plot( DC_offset ?expr '( "DC_offset" ) )
+CMRR = (ymax(db((vfreq('ac "/op_l2") - vfreq('ac "/on_l2")))) - (value(dB20((vfreq('ac "/op_l") + vfreq('ac "/on_l"))) 10000) - 6))
+plot( CMRR ?expr '( "CMRR" ) )
+Closeloop_Bode = db((vfreq('ac "/op1") - vfreq('ac "/on1")))
+Loop\ Gain\ dB20 = db(mag(getData("loopGain" ?result "stb")))
+GBW = cross(db(mag(getData("loopGain" ?result "stb"))) 0 -1 "either" nil nil)
+plot( GBW ?expr '( "GBW" ) )
+Phase\ Margin = getData("phaseMargin" ?result "stb_margin")
+plot( Phase\ Margin ?expr '( "Phase Margin" ) )
+Openloop_DC_GAIN = ymax(db((vfreq('ac "/op_l2") - vfreq('ac "/on_l2"))))
+plot( Openloop_DC_GAIN ?expr '( "Openloop_DC_GAIN" ) )

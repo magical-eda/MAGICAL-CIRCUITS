@@ -1,0 +1,25 @@
+simulator( 'spectre )
+design(	 "netlist")
+resultsDir( "" )
+modelFile( 
+    '("toplevel.scs" "top_tt")
+)
+analysis('tran ?stop "35000n"  ?errpreset "conservative"  )
+desVar(	  "fs" 320M	)
+desVar(	  "fin" "fs/1024*1"	)
+envOption(
+	'analysisOrder  list("tran") 
+)
+option(	'reltol  "1e-4" 
+)
+option( ?categ 'turboOpts
+	'apsplus  t 
+	'uniMode  "APS" 
+)
+saveOption( 'nestlvl "2" )
+saveOption( 'save "lvlpub" )
+save( 'i "/I0/VREF" "/I0/VDD" "/I0/VCM" )
+temp( 27 ) 
+run()
+Dout = sample(VT("/net6") 5e-07 3.5e-05 "linear" (1 / 3.2e+08))
+plot( Dout ?expr '( "Dout" ) )

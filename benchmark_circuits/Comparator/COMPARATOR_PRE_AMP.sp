@@ -1,21 +1,20 @@
-* label = Comparator
-.subckt COMPARATOR_PRE_AMP clk crossn crossp gnd intern interp outm outp vdd _net0 _net1
-xm0 gnd intern gnd gnd lvtnfet w=w0 l=l0
-xm22 gnd interp gnd gnd lvtnfet w=w0 l=l0
-xm16 outm crossp gnd gnd lvtnfet w=w1 l=l1
-xm17 outp crossn gnd gnd lvtnfet w=w1 l=l1
-xm4 crossn crossp intern gnd lvtnfet w=w2 l=l1
-xm3 crossp crossn interp gnd lvtnfet w=w2 l=l1
-xm7 net050 clk gnd gnd lvtnfet w=w3 l=l1
-xm5 intern _net0 net050 gnd lvtnfet w=w4 l=l1
-xm6 interp _net1 net050 gnd lvtnfet w=w4 l=l1
-xm8 outm crossp vdd vdd lvtpfet w=w5 l=l1
-xm18 intern clk vdd vdd lvtpfet w=w2 l=l1
-xm15 outp crossn vdd vdd lvtpfet w=w5 l=l1
-xm19 interp clk vdd vdd lvtpfet w=w2 l=l1
-xm10 crossn clk vdd vdd lvtpfet w=w2 l=l1
-xm12 crossp clk vdd vdd lvtpfet w=w2 l=l1
-xm14 crossn crossp vdd vdd lvtpfet w=w6 l=l1
-xm13 crossp crossn vdd vdd lvtpfet w=w6 l=l1
-.ends COMPARATOR_PRE_AMP
+subckt COMPARATOR_PRE_AMP_2018_Modify_test_flow CLK CROSSN CROSSP GND INTERN INTERP OUTM OUTP VDD VI+ VI-
+M0 ( GND INTERN GND GND) nfet_lvt w=1.05u l=1u nf=1 multi=1
+M22 ( GND INTERP GND GND) nfet_lvt w=1.05u l=1u nf=1 multi=1
+M16 ( OUTM CROSSP GND GND) nfet_lvt w=1.44u l=40n nf=3 multi=1
+M17 ( OUTP CROSSN GND GND) nfet_lvt w=1.44u l=40n nf=3 multi=1
+M4 ( CROSSN CROSSP INTERN GND) nfet_lvt w=1.92u l=40n nf=4 multi=1
+M3 ( CROSSP CROSSN INTERP GND) nfet_lvt w=1.92u l=40n nf=4 multi=1
+M7 ( net050 CLK GND GND) nfet_lvt w=8.64u l=40n nf=18 multi=1
+M5 ( INTERN VI+ net050 GND) nfet_lvt w=9.6u l=40n nf=10 multi=1
+M6 ( INTERP VI- net050 GND) nfet_lvt w=9.6u l=40n nf=10 multi=1
+M8 ( OUTM CROSSP VDD VDD) pfet_lvt w=2.88u l=40n nf=3 multi=1
+M18 ( INTERN CLK VDD VDD) pfet_lvt w=1.92u l=40n nf=2 multi=1
+M15 ( OUTP CROSSN VDD VDD) pfet_lvt w=2.88u l=40n nf=3 multi=1
+M19 ( INTERP CLK VDD VDD) pfet_lvt w=1.92u l=40n nf=2 multi=1
+M10 ( CROSSN CLK VDD VDD) pfet_lvt w=1.92u l=40n nf=2 multi=1
+M12 ( CROSSP CLK VDD VDD) pfet_lvt w=1.92u l=40n nf=2 multi=1
+M14 ( CROSSN CROSSP VDD VDD) pfet_lvt w=3.84u l=40n nf=4 multi=1
+M13 ( CROSSP CROSSN VDD VDD) pfet_lvt w=3.84u l=40n nf=4 multi=1
+ends COMPARATOR_PRE_AMP_2018_Modify_test_flow
 

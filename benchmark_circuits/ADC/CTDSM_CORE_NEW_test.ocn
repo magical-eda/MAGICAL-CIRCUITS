@@ -1,0 +1,29 @@
+simulator( 'spectre )
+design(	 "netlist")
+resultsDir( "" )
+modelFile( 
+    '("toplevel.scs" "top_tt")
+)
+analysis('tran ?stop "12u"  ?errpreset "conservative"  ?tranNoise "Transient Noise"  
+		?noisefmax "50G"  ?noisefmin ""  ?noiseseed "1"  ?noisescale ""  
+		?noisetmin ""  ?noiseupdate ""  ?noiseonoff ""  ?noiseinst ""  )
+desVar(	  "fin" "1e9/1024"	)
+envOption(
+	'setTopLevelAsSubckt  t 
+	'firstRun  t 
+	'analysisOrder  list("tran") 
+)
+option( ?categ 'turboOpts
+	'apsplus  t 
+	'uniMode  "APS" 
+)
+saveOption( 'nestlvl "2" )
+saveOption( 'save "lvlpub" )
+save( 'v "/OUTP" )
+save( 'i "/I0/VDDA" "/I0/VDDD" )
+temp( 27 ) 
+run()
+Dout = sample(VT("/OUTP") 0 1.2e-05 "linear" 1e-09)
+plot( Dout ?expr '( "Dout" ) )
+Power = (((IT("/I0/VDDD") + IT("/I0/VDDA"))) * 1.2)
+plot( Power ?expr '( "Power" ) )
